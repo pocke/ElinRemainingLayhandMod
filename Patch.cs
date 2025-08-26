@@ -1,5 +1,6 @@
 using System;
 using HarmonyLib;
+using UnityEngine;
 
 namespace RemainingLayhand;
 
@@ -7,6 +8,7 @@ namespace RemainingLayhand;
 public static class Patch
 {
   const int LayhandId = 1408;
+  static Sprite sprite;
 
   [HarmonyPrefix, HarmonyPatch(typeof(WidgetStatsBar), nameof(WidgetStatsBar.Add))]
   public static void WidgetStatsBar_Add_Prefix(WidgetStatsBar __instance, string id)
@@ -30,7 +32,7 @@ public static class Patch
   {
     if (id != Settings.Anchor) { return; }
 
-    w.Add(null, "layhand", w.iconDvPv, () => $"{remainingLayhand()}/{maxLayhand()}");
+    w.Add(null, "layhand", Sprite(), () => $"{remainingLayhand()}/{maxLayhand()}");
     w.Refresh();
   }
 
@@ -61,5 +63,31 @@ public static class Patch
   static bool layhandable(Chara c)
   {
     return EClass.pc.IsFriendOrAbove(c) && c.HasElement(LayhandId) && c.faith == EClass.game.religions.Healing;
+  }
+
+  static Sprite Sprite()
+  {
+    if (sprite == null)
+    {
+      var targetSprite = WidgetStatsBar.Instance.iconMoney;
+
+      var orig = CharaGen.Create("turtle").GetSprite();
+      var tex = orig.texture;
+      var rect = orig.textureRect;
+      Rect bottomRect = new Rect(
+        rect.x,
+        rect.y,
+        rect.width,
+        rect.height / 2f
+      );
+      Vector2 pivot = new Vector2(
+        orig.pivot.x / rect.width,
+        orig.pivot.y / rect.height
+      );
+      var ppu = tex.width / (targetSprite.texture.width / targetSprite.pixelsPerUnit) * 0.6f;
+
+      sprite = UnityEngine.Sprite.Create(tex, bottomRect, pivot, ppu);
+    }
+    return sprite;
   }
 }

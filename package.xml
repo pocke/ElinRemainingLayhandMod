@@ -7,6 +7,65 @@
   <version>0.23.173</version>
   <tags>QoL</tags>
   <description>
-TBD
-  </description>
-</Meta>
+(English is following Japanese)
+
+レイハンドの残り回数を表示するmodです。
+
+このmodを導入すると、そのエリアでレイハンドを覚えているキャラクターの数と、現在の残り回数を表示します。
+表示する場所は画面下の情報バーです。
+
+[h2]設定[/h2]
+
+設定ファイルは[code]SteamLibrary\steamapps\common\Elin\BepInEx\config\me.pocke.remaining-layhand.cfg[/code]にあります。
+このModをsubscribeしてからElinを一度起動するとこのファイルが生成されます。
+
+設定ファイルを使用して、情報バーのどこにレイハンドの残り回数を表示するかを設定できます。
+
+デフォルトでは所持重量の左に表示されます。
+所持重量を表示していない場合や、別の場所に表示したい場合には設定を変更してください。
+
+[h3]anchor[/h3]
+
+目印となる項目を指定します。デフォルトでは weight です。
+設定可能な項目は以下です。
+
+[code]
+dvpv, maxAlly, maxMinion, money, money2, plat, medal, karma, mood, fame, influence, tourism_value, hearth_lv, fertility, elec, weight
+[/code]
+
+[h3]position[/h3]
+
+anchorで設定した目印のどちら側に表示するかを指定します。デフォルトでは left です。
+設定可能な項目は、left, rightのどちらかです。
+
+
+[hr][/hr]
+
+This mod displays the remaining uses of Layhand.
+
+When you install this mod, it will show the number of characters in the area who know Layhand, as well as the current remaining uses.
+The information is displayed on the information bar at the bottom of the screen.
+
+[h2]Settings[/h2]
+
+The configuration file is located at [code]SteamLibrary\steamapps\common\Elin\BepInEx\config\me.pocke.remaining-layhand.cfg[/code].
+This file will be generated after you subscribe to this mod and launch Elin once.
+
+Using the configuration file, you can set where in the information bar the remaining uses of Layhand will be displayed.
+
+By default, it is displayed to the left of the carried weight.
+If you are not displaying the carried weight or want to display it elsewhere, please change the settings.
+
+[h3]anchor[/h3]
+
+Specify the item to use as an anchor. The default is weight.
+The following items can be set:
+
+[code]
+dvpv, maxAlly, maxMinion, money, money2, plat, medal, karma, mood, fame, influence, tourism_value, hearth_lv, fertility, elec, weight
+[/code]
+
+[h3]position[/h3]
+
+Specify which side of the anchor to display the information. The default is left.
+You can set either left or right.

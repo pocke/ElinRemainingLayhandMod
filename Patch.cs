@@ -62,7 +62,7 @@ public static class Patch
   // https://github.com/Elin-Modding-Resources/Elin-Decompiled/blob/72332a1390e68a8de62bca4acbd6ebbaab92257b/Elin/Card.cs#L4317
   static bool layhandable(Chara c)
   {
-    return EClass.pc.IsFriendOrAbove(c) && c.HasElement(LayhandId) && c.faith == EClass.game.religions.Healing;
+    return EClass.pc.IsFriendOrAbove(c) && c.HasElement(LayhandId) && c.faith == EClass.game.religions.Healing && c.memberType != FactionMemberType.Livestock;
   }
 
   static Sprite Sprite()
